@@ -1,0 +1,47 @@
+<aura:component implements="force:appHostable" controller="SalesOrderController">
+
+    <aura:attribute name="salesOrdersUser" type="Sales_Order__c[]"/>
+    <aura:attribute name="salesOrdersSystem" type="Sales_Order__c[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+    <lightning:card title="User Mode">
+        <lightning:button variant="brand" label="Save" class="slds-m-around_medium" onclick="{!c.saveUser}"/><br/>
+        <p class="slds-p-horizontal_small">
+            <aura:iteration items="{!v.salesOrdersUser}" var="s">
+                <a href="{! '/' + s.Id }" target="_blank">{!s.Name}</a><br/>
+                <ui:inputText label="Magic Word:" value="{!s.Magic_Word__c}" updateOn="keyup"/><br/>
+                Quantity: {!s.Quantity__c}
+                <hr/>
+            </aura:iteration>
+        </p>
+
+    </lightning:card>
+
+    <lightning:card title="System Mode">
+        <lightning:button variant="brand" label="Save" class="slds-m-around_medium" onclick="{!c.saveSystem}"/><br/>
+        <p class="slds-p-horizontal_small">
+            <aura:iteration items="{!v.salesOrdersSystem}" var="s">
+                <a href="{! '/' + s.Id }" target="_blank">{!s.Name}</a><br/>
+                <ui:inputText label="Magic Word:" value="{!s.Magic_Word__c}" updateOn="keyup"/><br/>
+                Quantity: {!s.Quantity__c}
+                <hr/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+
+    <lightning:card title="System Mode Query / User Mode Save">
+        <lightning:button variant="brand" label="Save" class="slds-m-around_medium" onclick="{!c.saveUser}"/><br/>
+        <p class="slds-p-horizontal_small">
+            <aura:iteration items="{!v.salesOrdersSystem}" var="s">
+                <a href="{! '/' + s.Id }" target="_blank">{!s.Name}</a><br/>
+                <ui:inputText label="Magic Word:" value="{!s.Magic_Word__c}" updateOn="keyup"/><br/>
+                Quantity: {!s.Quantity__c}
+                <hr/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+
+
+</aura:component>
